@@ -187,4 +187,4 @@ class SocketService {
 }
 
 // Export singleton instance
-export default new SocketService();
+export default SocketService();
