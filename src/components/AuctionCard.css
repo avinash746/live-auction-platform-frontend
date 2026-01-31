@@ -1,0 +1,316 @@
+.auction-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.auction-card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+.auction-card.expired {
+  opacity: 0.8;
+}
+
+/* Flash animations for bid updates */
+.auction-card.green {
+  animation: flashGreen 0.5s ease;
+}
+
+.auction-card.red {
+  animation: flashRed 0.5s ease;
+}
+
+@keyframes flashGreen {
+  0%, 100% { box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); }
+  50% { box-shadow: 0 0 20px rgba(34, 197, 94, 0.6); }
+}
+
+@keyframes flashRed {
+  0%, 100% { box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); }
+  50% { box-shadow: 0 0 20px rgba(239, 68, 68, 0.6); }
+}
+
+/* Image Container */
+.card-image-container {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  background: #f3f4f6;
+}
+
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.auction-card:hover .card-image {
+  transform: scale(1.05);
+}
+
+/* Timer Badge */
+.timer-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(0, 0, 0, 0.75);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  backdrop-filter: blur(4px);
+}
+
+.timer-badge.warning {
+  background: rgba(234, 179, 8, 0.9);
+  animation: pulse 1s ease-in-out infinite;
+}
+
+.timer-badge.critical {
+  background: rgba(239, 68, 68, 0.9);
+  animation: pulse 0.5s ease-in-out infinite;
+}
+
+.timer-badge.expired {
+  background: rgba(107, 114, 128, 0.9);
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.timer-icon {
+  font-size: 16px;
+}
+
+.timer-text {
+  font-family: 'Courier New', monospace;
+  letter-spacing: 1px;
+}
+
+/* Winning Badge */
+.winning-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 2px 8px rgba(251, 191, 36, 0.4);
+  animation: winningGlow 2s ease-in-out infinite;
+}
+
+@keyframes winningGlow {
+  0%, 100% { box-shadow: 0 2px 8px rgba(251, 191, 36, 0.4); }
+  50% { box-shadow: 0 4px 16px rgba(251, 191, 36, 0.6); }
+}
+
+.badge-icon {
+  font-size: 16px;
+}
+
+/* Ended Overlay */
+.ended-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(2px);
+}
+
+.ended-text {
+  color: white;
+  font-size: 24px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* Card Content */
+.card-content {
+  padding: 16px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-title {
+  margin: 0 0 8px 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: #111827;
+  line-height: 1.4;
+}
+
+.card-description {
+  margin: 0 0 16px 0;
+  font-size: 14px;
+  color: #6b7280;
+  line-height: 1.5;
+  flex: 1;
+}
+
+/* Price Section */
+.price-section {
+  background: #f9fafb;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.price-label {
+  font-size: 12px;
+  color: #6b7280;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.price-amount {
+  font-size: 28px;
+  font-weight: 700;
+  color: #059669;
+  line-height: 1;
+}
+
+.bid-count {
+  font-size: 12px;
+  color: #6b7280;
+  margin-top: 4px;
+}
+
+/* Bid Button */
+.bid-button {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.bid-button:hover:not(:disabled) {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+}
+
+.bid-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.bid-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.bid-button.winning {
+  background: linear-gradient(135deg, #10b981, #059669);
+}
+
+.bid-button.winning:hover:not(:disabled) {
+  background: linear-gradient(135deg, #059669, #047857);
+}
+
+.button-icon {
+  font-size: 18px;
+}
+
+.button-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Winner/Lost Messages */
+.winner-message,
+.lost-message {
+  padding: 12px;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.winner-message {
+  background: #d1fae5;
+  color: #065f46;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.winner-icon {
+  font-size: 20px;
+}
+
+.lost-message {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .card-image-container {
+    height: 180px;
+  }
+
+  .card-title {
+    font-size: 16px;
+  }
+
+  .card-description {
+    font-size: 13px;
+  }
+
+  .price-amount {
+    font-size: 24px;
+  }
+
+  .bid-button {
+    padding: 12px;
+    font-size: 15px;
+  }
+}
