@@ -186,5 +186,8 @@ class SocketService {
   }
 }
 
+// Create singleton instance
+const socketServiceInstance = new SocketService();
+
 // Export singleton instance
-export default new SocketService();
+export default socketServiceInstance;
